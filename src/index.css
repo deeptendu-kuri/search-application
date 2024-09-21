@@ -83,3 +83,90 @@ code {
   border-radius: 4px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 } */
+
+/* Container styles */
+.container {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+}
+
+.heading {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.form {
+  margin-bottom: 20px;
+}
+
+.input {
+  padding: 10px;
+  width: 80%;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background-color: #ccc;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.loading {
+  margin-top: 20px;
+}
+
+.no-results {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #888;
+}
+
+/* Scrollable list styles */
+.scrollable-list {
+  max-height: 300px; /* Set a fixed height for the scrollable area */
+  overflow-y: auto;  /* Enable vertical scrolling */
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+/* Add scrollbar styling if needed */
+.scrollable-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-list::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+

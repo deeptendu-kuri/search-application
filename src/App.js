@@ -31,10 +31,25 @@ const SearchApp = () => {
 
   const handleSearch = (values) => {
     const searchQuery = values.query.toLowerCase();
-    const results = data.filter((item) =>
-      item.title.toLowerCase().includes(searchQuery)
-    );
-    setFilteredData(results);
+
+    if (searchQuery === "") {
+      // Reset to the original data if query is empty
+      setFilteredData(data);
+    } else {
+      const results = data.filter((item) =>
+        item.title.toLowerCase().includes(searchQuery)
+      );
+      setFilteredData(results);
+    }
+  };
+
+  const handleChange = (e, handleChangeFn) => {
+    const searchQuery = e.target.value.toLowerCase();
+    handleChangeFn(e);
+
+    if (searchQuery === "") {
+      setFilteredData(data);
+    }
   };
 
   const validationSchema = Yup.object({
@@ -50,12 +65,13 @@ const SearchApp = () => {
         validationSchema={validationSchema}
         onSubmit={handleSearch}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, handleChange: formikHandleChange }) => (
           <Form className="form">
             <Field
               name="query"
               placeholder="Search todos..."
               className="input"
+              onChange={(e) => handleChange(e, formikHandleChange)}
             />
             <ErrorMessage name="query" component="div" className="error" />
             <button type="submit" disabled={isSubmitting} className="button">
@@ -70,17 +86,18 @@ const SearchApp = () => {
       {!loading && !error && filteredData.length === 0 && (
         <p className="no-results">No results found.</p>
       )}
-      <ul className="list">
-        {filteredData.map((item,index) => (
-          <ul key={item.id} className="list-item">
-            {index+1}.  {item.title}
-          </ul>
-        ))}
-      </ul>
+
+      <div className="scrollable-list">
+        <ul className="list">
+          {filteredData.map((item, index) => (
+            <li key={item.id} className="list-item">
+              {index + 1}. {item.title}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
 
 export default SearchApp;
-
-
